@@ -1,0 +1,10 @@
+book:
+  - id: 1
+    title: Mama Mia
+    leadtext: Mama Mia Long text
+  - id: 2
+    title: Esofagus
+    leadtext: Esofagus Long text
+  - id: 3
+    title: Manduras
+    leadtext: Manduras Long text
