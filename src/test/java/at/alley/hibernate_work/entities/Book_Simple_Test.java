@@ -1,6 +1,6 @@
 package at.alley.hibernate_work.entities;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -3,8 +3,10 @@ package at.alley.hibernate_work.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "TBL_BOOK")
 public class BookEntity {
 
     @Id
