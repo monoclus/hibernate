@@ -1,4 +1,5 @@
-book:
+!!at.alley.hibernate_work.entities.BookEntities
+books:
   - id: 1
     title: Mama Mia
     leadtext: Mama Mia Long text
