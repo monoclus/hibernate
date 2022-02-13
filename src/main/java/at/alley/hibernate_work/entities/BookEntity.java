@@ -1,11 +1,11 @@
 package at.alley.hibernate_work.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "book")
 public class BookEntity {
 
     @Id
@@ -15,6 +15,12 @@ public class BookEntity {
     private String title;
 
     private String leadtext;
+
+    @ManyToMany(targetEntity = AuthorEntity.class)
+    @JoinTable(name = "book_author",
+            joinColumns = {@JoinColumn(name = "book_id")},
+            inverseJoinColumns = {@JoinColumn(name = "author_id")})
+    private Set<AuthorEntity> authors = new HashSet<>();
 
     public BookEntity() {
     }
@@ -40,12 +46,19 @@ public class BookEntity {
         this.leadtext = leadtext;
     }
 
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<AuthorEntity> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<AuthorEntity> authors) {
+        this.authors = authors;
     }
 }

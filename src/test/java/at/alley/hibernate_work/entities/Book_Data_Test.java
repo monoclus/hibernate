@@ -12,7 +12,7 @@ public class Book_Data_Test {
     EntityManager entityManager;
 
     @BeforeEach
-    public void creataEntityManager() {
+    public void createEntityManager() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("BooksDbConnection");
         assertThat(entityManagerFactory).isNotNull();
         this.entityManager = entityManagerFactory.createEntityManager();
