@@ -1,7 +1,9 @@
 package at.alley.hibernate_work.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -18,9 +20,14 @@ public class BookEntity {
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "book_tag")
-    @Column(name = "tag")
     @OrderColumn(name = "tag")
     private Set<String> tags = new HashSet<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "book_word")
+    @Column(name = "word")
+    @OrderColumn(name = "word_ord")
+    private List<String> words = new ArrayList<>();
 
     @ManyToMany(targetEntity = AuthorEntity.class, fetch = FetchType.LAZY)
     @JoinTable(name = "book_author",
@@ -74,5 +81,13 @@ public class BookEntity {
 
     public void setTags(Set<String> tags) {
         this.tags = tags;
+    }
+
+    public List<String> getWords() {
+        return words;
+    }
+
+    public void setWords(List<String> words) {
+        this.words = words;
     }
 }

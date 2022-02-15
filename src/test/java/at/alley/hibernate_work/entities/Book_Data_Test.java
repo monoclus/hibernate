@@ -20,11 +20,11 @@ public class Book_Data_Test {
     }
 
     private Long createBook() {
-            entityManager.getTransaction().begin();
-            BookEntity oldBookEntity = new BookEntity("Book 3", "Leadtext 3");
-            entityManager.persist(oldBookEntity);
-            entityManager.getTransaction().commit();
-            return oldBookEntity.getId();
+        entityManager.getTransaction().begin();
+        BookEntity oldBookEntity = new BookEntity("Book 3", "Leadtext 3");
+        entityManager.persist(oldBookEntity);
+        entityManager.getTransaction().commit();
+        return oldBookEntity.getId();
     }
 
     @Test
@@ -46,7 +46,7 @@ public class Book_Data_Test {
         createBook();
 
         Query query = entityManager.createQuery("select count(b) from BookEntity b");
-        Long count = (Long)query.getSingleResult();
+        Long count = (Long) query.getSingleResult();
         assertThat(count).isGreaterThan(0);
     }
 }

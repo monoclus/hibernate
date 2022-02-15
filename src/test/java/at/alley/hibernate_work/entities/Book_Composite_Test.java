@@ -23,13 +23,17 @@ public class Book_Composite_Test {
         this.entityManager = entityManagerFactory.createEntityManager();
     }
 
-    @Test
-    public void save_composite_BookEntity_And_ReadTheId() {
-
+    private Long insertBook() {
         BookEntity bookEntity = new BookEntity("George Title", "George Title Leadtext");
+
         bookEntity.getTags().add("tag1");
         bookEntity.getTags().add("tag2");
         bookEntity.getTags().add("tag3");
+
+        bookEntity.getWords().add("word1");
+        bookEntity.getWords().add("word2");
+        bookEntity.getWords().add("word3");
+        bookEntity.getWords().add("word4");
 
         entityManager.getTransaction().begin();
         entityManager.persist(bookEntity);
@@ -37,11 +41,29 @@ public class Book_Composite_Test {
 
         assertThat(bookEntity.getId()).isGreaterThan(0);
 
-        long id = bookEntity.getId();
+        return bookEntity.getId();
+    }
+
+    @Test
+    public void insert_composite_BookEntity_And_ReadTheId() {
+        Long id = insertBook();
+        entityManager.clear();
 
         entityManager.getTransaction().begin();
-        bookEntity = entityManager.find(BookEntity.class, id);
+        BookEntity bookEntity = entityManager.find(BookEntity.class, id);
+        entityManager.getTransaction().commit();
+
+        assertThat(bookEntity).isNotNull();
         assertThat(bookEntity.getTags()).hasSize(3);
+        assertThat(bookEntity.getWords()).hasSize(4);
+    }
+
+    @Test
+    public void update_composite_BookEntity_And_ReadTheId() {
+
+
+
+
 
     }
 
