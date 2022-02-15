@@ -44,7 +44,9 @@ public class Book_Simple_Test {
     public void save_BookEntity_And_ReadTheId() {
         EntityManager entityManager = getEntityManager();
         BookEntity bookEntity = new BookEntity("George Title", "George Title Leadtext");
+        entityManager.getTransaction().begin();
         entityManager.persist(bookEntity);
+        entityManager.getTransaction().commit();;
         assertThat(bookEntity.getId()).isGreaterThan(0);
     }
 
@@ -53,7 +55,9 @@ public class Book_Simple_Test {
 
         EntityManager entityManager = getEntityManager();
         BookEntity bookEntity = new BookEntity("George Title", "George Title Leadtext");
+        entityManager.getTransaction().begin();
         entityManager.persist(bookEntity);
+        entityManager.getTransaction().commit();
         Long oldBookId = bookEntity.getId();
 
         BookEntity getItAgain = entityManager.find(BookEntity.class, oldBookId);

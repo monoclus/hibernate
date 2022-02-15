@@ -8,7 +8,7 @@
         </layout>
     </appender>
     <root>
-        <priority value="DEBUG"/>
+        <priority value="WARN"/>
         <appender-ref ref="console"/>
     </root>
     <logger name="org.hibernate.SQL"><level value="DEBUG"/></logger>

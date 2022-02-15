@@ -16,7 +16,13 @@ public class BookEntity {
 
     private String leadtext;
 
-    @ManyToMany(targetEntity = AuthorEntity.class)
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "book_tag")
+    @Column(name = "tag")
+    @OrderColumn
+    private Set<String> tags;
+
+    @ManyToMany(targetEntity = AuthorEntity.class, fetch = FetchType.LAZY)
     @JoinTable(name = "book_author",
             joinColumns = {@JoinColumn(name = "book_id")},
             inverseJoinColumns = {@JoinColumn(name = "author_id")})
@@ -60,5 +66,13 @@ public class BookEntity {
 
     public void setAuthors(Set<AuthorEntity> authors) {
         this.authors = authors;
+    }
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
     }
 }
