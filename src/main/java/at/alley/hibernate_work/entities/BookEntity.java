@@ -20,7 +20,7 @@ public class BookEntity {
     @CollectionTable(name = "book_tag")
     @Column(name = "tag")
     @OrderColumn
-    private Set<String> tags;
+    private Set<String> tags = new HashSet<>();
 
     @ManyToMany(targetEntity = AuthorEntity.class, fetch = FetchType.LAZY)
     @JoinTable(name = "book_author",
